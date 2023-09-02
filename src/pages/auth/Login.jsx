@@ -7,7 +7,7 @@ function Login () {
                         <h3>Login Here</h3>
                     </div>
 
-                    <div className="col-lg-7  mb-4">
+                    <div className="col-lg-7  mb-3">
                         <input type="text"  className="form-control" placeholder="User Id.."/>
                     </div>
                     <div className="col-lg-7  mb-4">
