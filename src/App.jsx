@@ -1,12 +1,15 @@
 
 import './App.css'
 
+
+import Login from './pages/auth/Login';
+
 function App() {
 
   return (
 
       <>
-          <h1>New Crm App</h1>
+          <Login />
       </>
   )
 }
