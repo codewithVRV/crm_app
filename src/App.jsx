@@ -1,5 +1,5 @@
 
-import './App.css'
+import './App.css';
 
 // js for bootstrap 
 import * as bootstrap from 'bootstrap';
@@ -13,10 +13,11 @@ function App() {
   return (
 
       <>
-          <Login />
+          {/* <Login /> */}
+          
           <SignUp />
       </>
-  )
+  );
 }
 
 export default App;

@@ -17,14 +17,14 @@ function SignUp () {
                         <input type="text"  className="form-control" placeholder="Password.."/>
                     </div>
                     <div className="col-lg-7">
-                        <div class="dropdown d-flex justify-content-end mb-2">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div className="dropdown d-flex justify-content-end mb-2">
+                        <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             User Type
                         </a>
 
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Customer</a></li>
-                            <li><a class="dropdown-item" href="#">Engineer</a></li>
+                        <ul className="dropdown-menu">
+                            <li><a className="dropdown-item" href="#">Customer</a></li>
+                            <li><a className="dropdown-item" href="#">Engineer</a></li>
                         </ul>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ function SignUp () {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default SignUp;
