@@ -4,7 +4,7 @@ import axiosInstance from "../../config/axiosInstance";
 
 const initialState = {
     role: localStorage.getItem('role') || '',
-    data: localStorage.getItem('data') || undefined,
+    data: JSON.parse(localStorage.getItem('data')) || undefined,
     token: localStorage.getItem('token') | '',
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
 }
@@ -37,7 +37,7 @@ const authSlice = createSlice({
             state.role = action.payload.data.userData?.userType;
             localStorage.setItem('role', action.payload.data.userData?.userType)
             localStorage.setItem('isLoggedIn', (action.payload.data.token != undefined))
-            localStorage.setItem('data', action.payload.data.userData)
+            localStorage.setItem('data', JSON.stringify(action.payload.data.userData))
             localStorage.setItem('token', action.payload.data.token)
         })
     }
