@@ -8,14 +8,25 @@ function SignUp () {
                     </div>
 
                     <div className="col-lg-7  mb-3">
-                        <input type="text"  className="form-control" placeholder="User Id.."/>
+                        <input type="text"  className="form-control" placeholder="User Name.."/>
                     </div>
+                    
                     <div className="col-lg-7  mb-3">
                         <input type="text"  className="form-control" placeholder="Email.."/>
                     </div>
                     <div className="col-lg-7  mb-4">
                         <input type="text"  className="form-control" placeholder="Password.."/>
                     </div>
+                    <div className="col-lg-7  mb-3">
+                        <input type="text"  className="form-control" placeholder="Client Name.."/>
+                    </div>
+                    <div className="col-lg-7  mb-3">
+                        <input type="text"  className="form-control" placeholder="User Type.."/>
+                    </div>
+                    <div className="col-lg-7  mb-3">
+                        <input type="text"  className="form-control" placeholder="User Staus.."/>
+                    </div>
+
                     <div className="col-lg-7">
                         <div className="dropdown d-flex justify-content-end mb-2">
                         <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

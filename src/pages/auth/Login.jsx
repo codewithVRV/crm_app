@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 
 import {login} from '../../Redux/Slices/AuthSlice'
 
@@ -8,17 +9,27 @@ import {login} from '../../Redux/Slices/AuthSlice'
 function Login () {
 
     const dispatch = useDispatch();
+    const navigator = useNavigate()
+
     const [loginDetails, setLoginDetails] = useState({
         email: "",
         password: ""
     })
 
 
+    function resetLoginState () {
+        setLoginDetails({
+            email: "",
+            password: ""
+        })
+    }
 
-    function onSubmit () {
+    async function onSubmit () {
         if(!loginDetails.email || !loginDetails.password) return;
-        dispatch(login(loginDetails))
+        const response = await dispatch(login(loginDetails))
         console.log("login details", loginDetails)
+        if(response.payload) navigator('/')
+        else resetLoginState()
     }
 
     function handleInputChange (e) {
@@ -41,6 +52,7 @@ function Login () {
                          placeholder="Email.."
                          onChange={handleInputChange}
                          name='email'
+                         value={loginDetails.email}
                          
                          />
                     </div>
@@ -50,6 +62,7 @@ function Login () {
                         placeholder="Password.."
                         onChange={handleInputChange}
                         name='password'
+                        value={loginDetails.password}
                         />
                     </div>
 
