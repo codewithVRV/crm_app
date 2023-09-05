@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import {login} from '../../Redux/Slices/AuthSlice'
 
@@ -67,7 +68,10 @@ function Login () {
                     </div>
 
                     <div className="col-lg-7 d-grid">
-                        <button className="btn btn-primary" onClick={onSubmit}>Submit</button>
+                        <button className="btn btn-success" onClick={onSubmit}>Submit</button>
+                    </div>
+                    <div className="col-lg-7 d-grid mt-2">
+                        <button className="btn btn-primary">Already have an account <Link to={'/signup'} className=" text-white mx-2">SignUp here.</Link></button>
                     </div>
                 </div>
             </div>
