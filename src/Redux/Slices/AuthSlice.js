@@ -21,10 +21,20 @@ export const login = createAsyncThunk('/auth/login', async (data) => {
         return response;
     }
     catch (error) {
-        console.log("error Handled", error)
+        console.log("error Handled by loging", error)
     }
 })
 
+
+export const signup = createAsyncThunk('/auth/signup', async (data) => {
+    try{
+        const response = await axiosInstance.post('/auth/signup', data);
+        return response;
+    }
+    catch (error) {
+        console.log("error Handled by singup", error)
+    }
+})
 
 
 const authSlice = createSlice({

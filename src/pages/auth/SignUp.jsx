@@ -20,11 +20,26 @@ function SignUp () {
                     <div className="col-lg-7  mb-3">
                         <input type="text"  className="form-control" placeholder="Client Name.."/>
                     </div>
-                    <div className="col-lg-7  mb-3">
-                        <input type="text"  className="form-control" placeholder="User Type.."/>
-                    </div>
+                    
                     <div className="col-lg-7  mb-3">
                         <input type="text"  className="form-control" placeholder="User Staus.."/>
+                    </div>
+
+                    <div className="col-lg-7">
+                        <div className="dropdown d-flex justify-content-end mb-2">
+                        <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            User Status
+                        </a>
+
+                        <ul className="dropdown-menu">
+                            <li><a className="dropdown-item" href="#">Approved</a></li>
+                            <li><a className="dropdown-item" href="#">Denied</a></li>
+                        </ul>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-7  mb-3">
+                        <input type="text"  className="form-control" placeholder="User Type.."/>
                     </div>
 
                     <div className="col-lg-7">
