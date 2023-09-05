@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -58,8 +59,18 @@ function SignUp () {
            !signupDetails.clientName) return;
            const response = await dispatch(signup(signupDetails))
            console.log("response is ",response)
-           if (response.payload) navigator('/login')
-           else resetSignupState()
+           if (response.payload){
+            // toast.success("Successfully Signed Up", {
+            //     position: 'top-right',
+            //     duration: 4000,
+            // })
+            navigator('/login')
+
+           } 
+           else {
+            // toast.error("Something went wrong. Try Again")
+            resetSignupState()
+           } 
     }
 
     return (
@@ -103,19 +114,7 @@ function SignUp () {
                     
                     
 
-                    {/* <div className="col-lg-7">
-                        <div className="dropdown d-flex justify-content-end mb-2">
-                        <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            User Status
-                        </a>
-
-                        <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" href="#">approved</a></li>
-                            <li><a className="dropdown-item" href="#">suspended</a></li>
-                            <li><a className="dropdown-item" href="#">rejected</a></li>
-                        </ul>
-                        </div>
-                    </div> */}
+                    
 
                     <div className="col-lg-7  mb-3">
                         <input type="text"  className="form-control"
