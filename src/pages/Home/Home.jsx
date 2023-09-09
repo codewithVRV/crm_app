@@ -1,5 +1,6 @@
 import './Home.css'
 
+import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 function Home () {
@@ -7,11 +8,9 @@ function Home () {
         <>
             <h1>This is home page</h1>
             <Link to={"/login"}>Go to Login Page</Link> <br /> <br />
-            {/* <a className="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                Link with href
-             </a> */}
-                <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                 Open Side Bar
+            
+                <button className="btn btn-primary m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                 <AiOutlineMenu />
                 </button>
 
                 <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -35,9 +34,9 @@ function Home () {
                             <li><a className="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </div> */}
-                    <div className="d-flex justify-content-between">
-                        <button className="btn btn-primary fixed-bottom login-btn">Login</button>
-                        <button className="btn btn-primary fixed-bottom signup-btn">SignUp</button>
+                    <div className="d-flex justify-content-around mt-5">
+                        <button className="btn btn-primary" >Login</button>
+                        <button className="btn btn-secondary" >SignUp</button>
                     </div>
                 </div>
                 </div>
