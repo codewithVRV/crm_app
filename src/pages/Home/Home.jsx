@@ -1,7 +1,6 @@
 import './Home.css'
 
 import { useEffect } from 'react';
-// import{AiOutlineCloseCircle} from 'react-icons/Ai'
 import { BsFillPencilFill} from 'react-icons/Bs'
 import { TbProgressBolt} from 'react-icons/Tb'
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,10 +10,11 @@ import HomeLayout from '../../Layouts/HomeLayout';
 import { getAllTicketsforTheUser } from '../../Redux/Slices/TicketSlice';
 
 
+
 function Home () {
 
     const authState = useSelector((state) => state.auth);
-    // const ticketsState = useSelector((state) => state.tickets)
+    const ticketsState = useSelector((state) => state.tickets)
 
     const dispatch = useDispatch();
     
@@ -28,6 +28,7 @@ function Home () {
     useEffect(() => {
 
         loadTickets()
+
     }, [authState.token])
 
 
@@ -35,30 +36,29 @@ function Home () {
     return (
         <HomeLayout>
            
-            {/* <h1>Children</h1> */}
-            {/* <Card */}
+          
             <div className='d-flex justify-content-center flex-wrap'>
-                <Card>
+                <Card quantity={ticketsState.ticketDistribution.open} titleText={'Open'}>
                     <BsFillPencilFill />  
                 </Card>
 
-                <Card>
+                <Card titleText={'inProgress'} quantity={ticketsState.ticketDistribution.inProgress}>
                     <TbProgressBolt />  
                 </Card>
 
-                <Card>
+                <Card titleText={'Resolved'} quantity={ticketsState.ticketDistribution.resolved}>
+                    <TbProgressBolt />  
+                </Card>
+
+                <Card titleText={'onHold'} quantity={ticketsState.ticketDistribution.onHold}>
                     <BsFillPencilFill />  
                 </Card>
 
-                <Card quantity={30}>
+                <Card titleText={'Canceled'} quantity={ticketsState.ticketDistribution.canceled}>
                     <BsFillPencilFill />  
                 </Card>
-                <Card quantity={30}>
-                    <BsFillPencilFill />  
-                </Card>
-                <Card quantity={30}>
-                    <BsFillPencilFill />  
-                </Card>
+               
+                
             </div>
 
             
