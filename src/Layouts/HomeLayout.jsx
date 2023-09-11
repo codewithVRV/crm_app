@@ -1,8 +1,24 @@
 
 import { AiOutlineMenu } from "react-icons/ai";
-// import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-function HomeLayout ( {children}) {
+import { login } from "../Redux/Slices/AuthSlice";
+
+
+
+
+
+function HomeLayout ({ children }) {
+
+    const authState = useSelector((state) => state.auth);
+    const dispatch = useDispatch()
+    const navigator = useNavigate()
+
+    function onLogout () {
+        dispatch(login)
+        navigator('/login')
+    }
     return (
         <>
             
@@ -26,17 +42,39 @@ function HomeLayout ( {children}) {
                         <h4 className="text-center">Dashboard</h4>
                         </div>
                         
-                        <div className="d-flex justify-content-around mt-5">
-                            <button className="btn btn-primary" >Login</button>
-                            <button className="btn btn-secondary" >SignUp</button>
-                        </div>
+                                {
+                                    !authState.isLoggedIn ? (
+                                        <>  
+                                        <div className="d-flex justify-content-around mt-5">
+                                            <Link  to="/login" className="btn btn-primary" >Login</Link>
+                                            <Link  to="/signup" className="btn btn-secondary" >SignUp</Link>
+                                        </div>
+                                            
+
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className="d-flex justify-content-around mt-5">
+                                                <button onClick={onLogout} className="btn btn-success" >LogOut</button>
+                                                <button className="btn btn-secondary" >Profile</button>
+                                            </div>
+
+                                        </>
+                                    )
+                                }
+
+
+                        
                     </div>
                 </div>
 
                 </div>
 
-                    <div className="mx-5 px-5 mt-2">
+                    <div className="mx-5 px-5 mt-2 d-flex justify-content-between">
                         {children}  
+                        {/* {children}  
+                        {children}  
+                        {children}   */}
                     </div>
                     
                 </div>

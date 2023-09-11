@@ -1,0 +1,11 @@
+.card-wrapper {
+    height: 10rem;
+    width: 15rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: burlywood;
+}
+
+.card-upper-part {
+    border-bottom: 2px solid brown;
+}
