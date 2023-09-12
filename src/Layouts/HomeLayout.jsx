@@ -12,8 +12,10 @@ import { login } from "../Redux/Slices/AuthSlice";
 function HomeLayout ({ children }) {
 
     const authState = useSelector((state) => state.auth);
+    
     const dispatch = useDispatch()
     const navigator = useNavigate()
+    console.log("this is the authState ", authState)
 
     function onLogout () {
         dispatch(login)
@@ -38,19 +40,17 @@ function HomeLayout ({ children }) {
                     </div>
                     <div className="offcanvas-body">
                         <div>
-                        <h3 className="mb-3 text-center">View All Tickes</h3>
-                        <h4 className="text-center">Dashboard</h4>
+                        <Link to={'/'}><h3 className="mb-3 text-center">Home</h3></Link>
+                        <Link to={'/dashboard'}><h4 className="text-center">Dashboard</h4></Link>
                         </div>
                         
                                 {
-                                    !authState.isLoggedIn ? (
+                                    authState.isLoggedIn == false ? (
                                         <>  
-                                        <div className="d-flex justify-content-around mt-5">
-                                            <Link  to="/login" className="btn btn-primary" >Login</Link>
-                                            <Link  to="/signup" className="btn btn-secondary" >SignUp</Link>
-                                        </div>
-                                            
-
+                                            <div className="d-flex justify-content-around mt-5">
+                                                <Link  to="/login" className="btn btn-primary" >Login</Link>
+                                                <Link  to="/signup" className="btn btn-secondary" >SignUp</Link>
+                                            </div>
                                         </>
                                     ) : (
                                         <>
@@ -62,6 +62,8 @@ function HomeLayout ({ children }) {
                                         </>
                                     )
                                 }
+
+                               
 
 
                         

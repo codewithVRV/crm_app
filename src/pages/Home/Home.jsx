@@ -1,39 +1,22 @@
 import './Home.css'
 
-import { useEffect } from 'react';
 import { BsFillPencilFill} from 'react-icons/Bs'
 import { TbProgressBolt} from 'react-icons/Tb'
-import { useDispatch, useSelector } from 'react-redux';
 
 import Card from '../../component/Card/Card';
+import useTickets from '../../hooks/useTickets';
 import HomeLayout from '../../Layouts/HomeLayout';
-import { getAllTicketsforTheUser } from '../../Redux/Slices/TicketSlice';
 
 
 
 function Home () {
 
-    const authState = useSelector((state) => state.auth);
-    const ticketsState = useSelector((state) => state.tickets)
-
-    const dispatch = useDispatch();
     
-
-    async function loadTickets () {
-        const response = await dispatch(getAllTicketsforTheUser());
-        console.log(response)
-    }
-    
-
-    useEffect(() => {
-
-        loadTickets()
-
-    }, [authState.token])
-
+    const [ticketsState] = useTickets();
 
 
     return (
+        <>
         <HomeLayout>
            
           
@@ -64,6 +47,8 @@ function Home () {
             
 
         </HomeLayout>
+        
+        </>
     )
 }
 
