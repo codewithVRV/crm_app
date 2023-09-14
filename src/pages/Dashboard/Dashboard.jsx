@@ -1,5 +1,8 @@
 
 
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import useTickets from "../../hooks/useTickets";
 import HomeLayout from "../../Layouts/HomeLayout";
 
@@ -7,6 +10,12 @@ import HomeLayout from "../../Layouts/HomeLayout";
 function Dashboard () {
     
     const [ticketState] = useTickets()
+    const [searchParam] = useSearchParams()
+
+    useEffect (() => {
+        console.log("search param is ", searchParam)
+        console.log("Search param is", searchParam.get('status'))
+    }) 
     return (
         <>  
             <HomeLayout></HomeLayout>

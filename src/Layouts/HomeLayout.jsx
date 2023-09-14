@@ -15,7 +15,7 @@ function HomeLayout ({ children }) {
     
     const dispatch = useDispatch()
     const navigator = useNavigate()
-    console.log("this is the authState ", authState)
+    // console.log("this is the authState ", authState)
 
     function onLogout () {
         dispatch(login)

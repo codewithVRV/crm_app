@@ -13,6 +13,7 @@ function Home () {
 
     
     const [ticketsState] = useTickets();
+    // console.log("ticket state is", ticketsState)
 
 
     return (
@@ -25,7 +26,7 @@ function Home () {
                     <BsFillPencilFill />  
                 </Card>
 
-                <Card titleText={'inProgress'} quantity={ticketsState.ticketDistribution.inProgress}>
+                <Card titleText={'In Progress'} quantity={ticketsState.ticketDistribution.inProgress}>
                     <TbProgressBolt />  
                 </Card>
 
@@ -33,7 +34,7 @@ function Home () {
                     <TbProgressBolt />  
                 </Card>
 
-                <Card titleText={'onHold'} quantity={ticketsState.ticketDistribution.onHold}>
+                <Card titleText={'On Hold'} quantity={ticketsState.ticketDistribution.onHold}>
                     <BsFillPencilFill />  
                 </Card>
 
