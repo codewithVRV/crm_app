@@ -15,3 +15,9 @@
     width: 30rem;
     margin: 30px auto;
 }
+
+.line-chart-data {
+    height: 350px;
+    width: 900px;
+    margin: 0 auto;
+}
