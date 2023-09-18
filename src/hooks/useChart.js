@@ -14,6 +14,9 @@ function useChart () {
         openTickets: [],
         inProgressTickets: [],
         resolveTicketts: [],
+        openTicketsByMonth: [],
+        inProgressTicketsByMonth: [],
+        resolvedTicketsByMonth: [],
     })
     // console.log("ticket state is", ticketsState)
 
@@ -56,6 +59,28 @@ function useChart () {
         ],
       };
 
+      const barChartData = {
+        labels : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [
+          {
+            label: 'Open Tickets',
+            data: Object.values(ticketCharData.openTicketsByMonth),
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          },
+          {
+            label: 'In Progress Tickets',
+            data: Object.values(ticketCharData.inProgressTicketsByMonth),
+            backgroundColor: 'rgba(53, 162, 235, 0.5)',
+          },
+          {
+            label: 'Resolved Tickets',
+            data: Object.values(ticketCharData.resolvedTicketsByMonth),
+            backgroundColor: 'rgba(153, 212, 75, 0.5)',
+          },
+          
+        ],
+      };
+
 
     function processOpenTickets () {
         // Fetch the current date
@@ -71,6 +96,10 @@ function useChart () {
             let opentTicketsData = {};
             let inProgressTicketsData = {};
             let resolvedTicketsData = {};
+
+            let openTicketsByMonth = {'January': 0, 'February': 0, 'March': 0, 'April': 0, 'May': 0, 'June': 0, 'July': 0, 'August': 0, 'September': 0, 'October': 0, 'November': 0, 'December': 0}
+            let inProgressTicketsByMonth = {'January': 0, 'February': 0, 'March': 0, 'April': 0, 'May': 0, 'June': 0, 'July': 0, 'August': 0, 'September': 0, 'October': 0, 'November': 0, 'December': 0}
+            let resolvedTicketsByMonth = {'January': 0, 'February': 0, 'March': 0, 'April': 0, 'May': 0, 'June': 0, 'July': 0, 'August': 0, 'September': 0, 'October': 0, 'November': 0, 'December': 0}
 
             // Initialize the frequency map withe default value 0 for the last 10 days
             for(let i = 0; i < 10; i++){
@@ -109,6 +138,21 @@ function useChart () {
                 if(ticket.status == 'resolved' && ticketDate > tenthDayFormToday){
                     resolvedTicketsData[date] = (!resolvedTicketsData[date]) ? 1 : resolvedTicketsData[date] + 1;
                 }
+
+
+                // Process data by Month;
+                if(ticket.status == 'open'){
+                    let month = ticketDate.toLocaleString('default', { month: 'long' });
+                    openTicketsByMonth[month] += 1;
+                }
+                if(ticket.status == 'inProgress'){
+                    let month = ticketDate.toLocaleString('default', { month: 'long' });
+                    inProgressTicketsByMonth[month] += 1;
+                }
+                if(ticket.status == 'resolved'){
+                    let month = ticketDate.toLocaleString('default', { month: 'long' });
+                    resolvedTicketsByMonth[month] += 1;
+                }
             })
 
             // Upadate the state
@@ -116,6 +160,9 @@ function useChart () {
                 openTickets: opentTicketsData,
                 inProgressTickets: inProgressTicketsData,
                 resolveTicketts: resolvedTicketsData,
+                openTicketsByMonth: openTicketsByMonth,
+                inProgressTicketsByMonth: inProgressTicketsByMonth,
+                resolvedTicketsByMonth: resolvedTicketsByMonth,
             })
         }
     }
@@ -126,7 +173,7 @@ function useChart () {
     }, [ticketsState.ticketList])
 
 
-    return [pieChartData, lineChartData]
+    return [pieChartData, lineChartData, barChartData]
 }
 
 export default useChart;

@@ -1,6 +1,6 @@
 import './Home.css'
 
-import { Line, Pie  } from "react-chartjs-2";
+import { Bar, Line, Pie  } from "react-chartjs-2";
 import { BsFillPencilFill} from 'react-icons/Bs'
 import { TbProgressBolt} from 'react-icons/Tb'
 
@@ -15,7 +15,7 @@ function Home () {
 
     
     const [ticketsState] = useTickets();
-    const [pieChartData, lineChartData] = useChart()    
+    const [pieChartData, lineChartData, barChartData] = useChart()    
     
     return (
         <>
@@ -60,11 +60,11 @@ function Home () {
 
         </div>
 
-        {/* <div>
+        <div>
             <Bar 
                 data={barChartData}
             />
-        </div> */}
+        </div>
         </>
     )
 }
