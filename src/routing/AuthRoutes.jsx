@@ -6,7 +6,7 @@ function AuthRoutes ({allowListedRoles}) {
     const {role} = useSelector((state) => state.auth);
     return (
         <>
-            {allowListedRoles.find((givenRole) => givenRole == role) ? <Outlet /> : <div>User Not Defined</div>}
+            {allowListedRoles.find((givenRole) => givenRole == role) ? <Outlet /> : <h1>User Not Defined</h1>}
         </>
     )
 }
