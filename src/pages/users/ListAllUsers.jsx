@@ -78,7 +78,7 @@ function ListAllUsers () {
 
         {/* UserDetailsModal */}
 
-        <UserDetailsModal modalData={modalData} />
+        <UserDetailsModal key={modalData.name} user={modalData} />
 
                         
         </>
