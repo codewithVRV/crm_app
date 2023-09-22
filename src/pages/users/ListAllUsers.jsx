@@ -3,11 +3,18 @@ import { usePDF } from 'react-to-pdf';
 
 import axiosInstance from "../../config/axiosInstance";
 import HomeLayout from "../../Layouts/HomeLayout";
-// import Dashboard from "../Dashboard/Dashboard";
 
 function ListAllUsers () {
     const [userList, setUserList] = useState([])
     const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
+    const [modalData, setModalData] = useState({
+        name: '',
+        email: '',
+        userStatus: '',
+        userType: '',
+        clientName: '',
+        id: '',
+    })
 
 
     async function loadusers() {
@@ -16,21 +23,16 @@ function ListAllUsers () {
                 'x-access-token': localStorage.getItem('token')
             }
         })
-        console.log("response of user is", response)
         setUserList(response?.data?.result)
     }
-    console.log("userlist", userList)
-
 
     useEffect(() => {
         loadusers()
     }, [])
     return (
         <>
-            <HomeLayout>
-                    {/* <Dashboard /> */}
-                    
-            </HomeLayout>
+            <HomeLayout />
+              
             <div className="container">
                     <div className="row d-flex justify-content-center py-3">
                         <div className="col-6 py-3"><h2 className='text-end'>All Tickets Record</h2></div>
@@ -48,15 +50,24 @@ function ListAllUsers () {
                                 <th scope="col">Type</th>
                             </tr>
                         </thead>
-                        {userList && userList.map((ticket) => {
+                        {userList && userList.map((user) => {
                             return (
-                                <tbody key={ticket._id}>
-                                    <tr  data-toggle="modal" data-target="#myModal">
-                                        <td>{ticket._id}</td>
-                                        <td>{ticket.name}</td>
-                                        <td>{ticket.email}</td>
-                                        <td>{ticket.userStatus}</td>
-                                        <td>{ticket.userType}</td>
+                                <tbody key={user._id}>
+                                    <tr onClick={() => {
+                                        setModalData({
+                                            name: user.name,
+                                            email: user.email,
+                                            userStatus: user.userStatus,
+                                            userType: user.userType,
+                                            clientName: user.clientName,
+                                            id: user._id,
+                                        })
+                                    }}  data-toggle="modal" data-target="#myModal">
+                                        <td>{user._id}</td>
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.userStatus}</td>
+                                        <td>{user.userType}</td>
                                     </tr>
                                 </tbody>
                             )
@@ -76,7 +87,13 @@ function ListAllUsers () {
                     {/* <!-- Modal body --> */}
                     <div className="modal-body">
                         {/* <!-- Content for the modal goes here --> */}
-                        <p>Item details will appear here.</p>
+                        <p> User Name:-     <b className="ms-5">{modalData.name}</b></p>
+                        <p> User Email:-    <b className="ms-5">{modalData.email}</b></p>
+                        <p> User Id:-       <b className="ms-5">{modalData.id}</b></p>
+                        <p> User Status:-   <b className="ms-5">{modalData.userStatus}</b></p>
+                        <p> User Type:-     <b className="ms-5">{modalData.userType}</b></p>
+                        <p> Client Name:-   <b className="ms-5">{modalData.clientName}</b></p>
+                        
                     </div>
                     {/* <!-- Modal footer --> */}
                     <div className="modal-footer">
