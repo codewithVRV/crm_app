@@ -5,12 +5,14 @@ import axiosInstance from "../../config/axiosInstance";
 
 
 
-function UserDetailsModal ({user}) {
+function UserDetailsModal ({user, resetTable}) {
 
     const [modalData, setModalData] = useState(user)
 
     
-    async function onStatusHandel (e) {
+    async function onHandleSubmit (e) {
+        const url = e.target.parentNode.parentNode;
+        const name = url.getAttribute('name')
         try{
         const response = await axiosInstance.patch('user/updateUser', {
             userId: modalData.id,
@@ -28,7 +30,8 @@ function UserDetailsModal ({user}) {
             const user = response?.data?.result
 
             setModalData({
-                name: user.name,
+                ...modalData,
+                [name]: user.name,
                 email: user.email,
                 userStatus: user.userStatus,
                 userType: user.userType,
@@ -44,6 +47,9 @@ function UserDetailsModal ({user}) {
         
     }
 
+    function resetDataTable (){
+        resetTable()
+    }
     
 
     return (
@@ -66,12 +72,11 @@ function UserDetailsModal ({user}) {
                         <p className="d-flex"> User Status:-  
 
                              <b className="ms-5">
-                                {/*  */}
                                 <div className="dropdown">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {modalData.userStatus}
                                     </button>
-                                        <ul className="dropdown-menu" onClick={onStatusHandel}>
+                                        <ul name="userStatus" className="dropdown-menu" onClick={onHandleSubmit}>
                                             <li><a className="dropdown-item" href="#">approved</a></li>
                                             <li><a className="dropdown-item" href="#">suspended</a></li>
                                             <li><a className="dropdown-item" href="#">rejected</a></li>
@@ -80,14 +85,28 @@ function UserDetailsModal ({user}) {
                              </b>
                              
                         </p>
-                        <p> User Type:-     <b className="ms-5">{modalData.userType}</b></p>
+                        <p className="d-flex"> User Type:-     
+
+                            <b className="ms-5">
+                                <div className="dropdown">
+                                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {modalData.userType}
+                                    </button>
+                                        <ul name="userType" className="dropdown-menu" onClick={onHandleSubmit}>
+                                            <li><a className="dropdown-item" href="#">customer</a></li>
+                                            <li><a className="dropdown-item" href="#">admin</a></li>
+                                            <li><a className="dropdown-item" href="#">engineer</a></li>
+                                        </ul>
+                                    </div>
+                             </b>
+                            
+                        </p>
                         <p> Client Name:-   <b className="ms-5">{modalData.clientName}</b></p>
                         
                     </div>
                     {/* <!-- Modal footer --> */}
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" onClick={resetDataTable} className="btn btn-primary" data-dismiss="modal">Save changes</button>
                     </div>
                 </div>   
             </div>

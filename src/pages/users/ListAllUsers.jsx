@@ -78,7 +78,7 @@ function ListAllUsers () {
 
         {/* UserDetailsModal */}
 
-        <UserDetailsModal key={modalData.name} user={modalData} />
+        <UserDetailsModal key={modalData.name} user={modalData}  resetTable={loadusers}/>
 
                         
         </>
