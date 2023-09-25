@@ -15,7 +15,7 @@ function ListAllUsers () {
         userType: '',
         clientName: '',
         id: '',
-    })
+    });
 
 
     async function loadusers() {
@@ -35,11 +35,11 @@ function ListAllUsers () {
             <HomeLayout />
               
             <div className="container">
-                    <div className="row d-flex justify-content-center py-3">
-                        <div className="col-6 py-3"><h2 className='text-end'>All Tickets Record</h2></div>
-                        <div className="col-3 py-3"><button className='btn btn-primary mt-1' onClick={() => toPDF()}>Export to Pdf</button></div>
-                    </div>
+                <div className="row d-flex justify-content-center py-3">
+                    <div className="col-6 py-3"><h2 className='text-end'>All Tickets Record</h2></div>
+                    <div className="col-3 py-3"><button className='btn btn-primary mt-1' onClick={() => toPDF()}>Export to Pdf</button></div>
                 </div>
+            </div>
             <div ref={targetRef}>
                     <table className="table table-hover table-bordered text-center">
                         <thead className="table-danger">

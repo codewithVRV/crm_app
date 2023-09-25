@@ -1,7 +1,9 @@
 
 
+import { useState } from 'react';
 import { usePDF } from 'react-to-pdf';
 
+import TicketDetailsModal from '../../component/TicketDetailsModal/TicketDetailsModal';
 import useTickets from "../../hooks/useTickets";
 import HomeLayout from "../../Layouts/HomeLayout";
 
@@ -11,6 +13,7 @@ function Dashboard () {
     const [ticketState] = useTickets()
     const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
 
+    const [selectedTickets, setSelectedTickets] = useState({})
     
     return (
         <>  
@@ -39,8 +42,16 @@ function Dashboard () {
                         </thead>
                         {ticketState && ticketState.ticketList.map((ticket) => {
                             return (
-                                <tbody key={ticket._id}>
-                                    <tr>
+                                <tbody key={ticket._id} 
+                                    // onClick={(row) => {
+                                    //     console.log(row.target.textContent)
+                                    // }} 
+                                >
+                                    <tr data-toggle="modal" data-target="#myModal" 
+                                         onClick={() => {
+                                            setSelectedTickets(ticket)
+                                        }}   
+                                    >
                                     <td scope="row">{ticket._id}</td>
                                     <td>{ticket.title}</td>
                                     <td>{ticket.description}</td>
@@ -54,6 +65,13 @@ function Dashboard () {
                         })}
                     </table>
                 </div>
+                        {/* Ticket Details Modal */}
+
+                        <TicketDetailsModal  ticket={selectedTickets}/>
+
+                {/* React Data Table */}
+
+                
         </>
     )
 }
