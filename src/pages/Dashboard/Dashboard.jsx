@@ -43,9 +43,7 @@ function Dashboard () {
                         {ticketState && ticketState.ticketList.map((ticket) => {
                             return (
                                 <tbody key={ticket._id} 
-                                    // onClick={(row) => {
-                                    //     console.log(row.target.textContent)
-                                    // }} 
+                                    
                                 >
                                     <tr data-toggle="modal" data-target="#myModal" 
                                          onClick={() => {
@@ -67,9 +65,8 @@ function Dashboard () {
                 </div>
                         {/* Ticket Details Modal */}
 
-                        <TicketDetailsModal  ticket={selectedTickets}/>
+                        <TicketDetailsModal  ticket={selectedTickets} key={selectedTickets._id}/>
 
-                {/* React Data Table */}
 
                 
         </>
