@@ -43,6 +43,7 @@ function HomeLayout ({ children }) {
                         <Link to={'/'}><h3 className="mb-3 text-center">Home</h3></Link>
                         <Link to={'/dashboard'}><h4 className="mb-3 text-center">Dashboard</h4></Link>
                         <Link to={'/users'}><h4 className="mb-3 text-center">All Users</h4></Link>
+                        <Link to={'/ticket/create'}><h4 className="mb-3 text-center">Create a Ticket</h4></Link>
                         </div>
                         
                                 {

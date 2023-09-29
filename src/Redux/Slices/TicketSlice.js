@@ -37,28 +37,7 @@ export const getAllTicketsforTheUser = createAsyncThunk('tickets/getAllTicketsfo
 })
 
 
-// export const updateTicket = createAsyncThunk('tickets/updateTicket', async (ticket) => {
-//     try {
-//         const response = axiosInstance.patch(`ticket/${ticket._id}`,
-//         ticket, // req body
-//         {
-//             headers: {
-//                 'x-access-token' : localStorage.getItem('token')
-//             }
-//         });
-//         toast.promise(response, {
-//             success: "Successfully update the ticket",
-//             loading: "Updating the ticket",
-//             error: 'Something went wrong',
-//         });
-//         return await response;
 
-//     }
-
-//     catch(error) {
-//         console.log("error handled by ticket slice", error)
-//     }
-// })
 
 export const updateTicket = createAsyncThunk('tickets/updateTicket', async (ticket) => {
     console.log("receiving the ticket object data", ticket)
@@ -72,6 +51,30 @@ export const updateTicket = createAsyncThunk('tickets/updateTicket', async (tick
         });
         toast.promise(response, {
             success: 'Successfully updated the ticket',
+            loading: 'Updating the ticket',
+            error: 'Something went wrong'
+        });
+        return await response;
+        
+    } catch(error) {
+        console.log(error);
+        
+    }
+});
+
+
+export const createTicket = createAsyncThunk('tickets/createTicket', async (ticket) => {
+    console.log("receiving the ticket object data", ticket)
+    try {
+        const response = axiosInstance.post(`ticket`, 
+        ticket, // req body
+        {
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        });
+        toast.promise(response, {
+            success: 'Successfully created the ticket',
             loading: 'Updating the ticket',
             error: 'Something went wrong'
         });
@@ -119,28 +122,42 @@ const ticketSlice = createSlice({
             })
         })
         .addCase(updateTicket.fulfilled, (state, action) => {
-            console.log("action is", action)
-            // console.log(action.meta.arg)
-            // const updatedTicket = action.payload.data.result;
-            // const updatedTicket = action.meta.arg;
-            // state.ticketList = state.ticketList.map((ticket) => {
-            //     if(ticket._id == updatedTicket._id) return updatedTicket;
-            //     return ticket;
-            // })
-            // state.downloadedTickets = state.downloadedTickets.map((ticket) => {
-            //     if(ticket._id == updatedTicket._id) return updatedTicket;
-            //     return ticket;
-            // })
-            // state.ticketDistribution = {
-            //     open : 0, 
-            //     onHold: 0, 
-            //     inProgress: 0,
-            //     canceled: 0, 
-            //     resolved: 0,
-            // }
-            // state.downloadedTickets.forEach((ticket) => {
-            //     state.ticketDistribution[ticket.status] = state.ticketDistribution[ticket.status] + 1;
-            // })
+            // console.log("action is", action)
+            const updatedTicket = action.payload.data.result;
+            state.ticketList = state.ticketList.map((ticket) => {
+                if(ticket._id == updatedTicket._id) return updatedTicket;
+                return ticket;
+            })
+            state.downloadedTickets = state.downloadedTickets.map((ticket) => {
+                if(ticket._id == updatedTicket._id) return updatedTicket;
+                return ticket;
+            })
+            state.ticketDistribution = {
+                open : 0, 
+                onHold: 0, 
+                inProgress: 0,
+                canceled: 0, 
+                resolved: 0,
+            }
+            state.downloadedTickets.forEach((ticket) => {
+                state.ticketDistribution[ticket.status] = state.ticketDistribution[ticket.status] + 1;
+            })
+        })
+        .addCase(createTicket.fulfilled, (state, action) => {
+            if(action?.payload?.data == undefined) return;
+            const newTicket = action.payload.data;
+            state.downloadedTickets.push(newTicket)
+            state.ticketList = state.downloadedTickets;
+            state.ticketDistribution = {
+                open : 0, 
+                onHold: 0, 
+                inProgress: 0,
+                canceled: 0, 
+                resolved: 0,
+            };
+            state.downloadedTickets.forEach(ticket => {
+                state.ticketDistribution[ticket.status] = state.ticketDistribution[ticket.status] + 1;
+            })
         })
     }
 });

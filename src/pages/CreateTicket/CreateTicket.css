@@ -1,0 +1,50 @@
+.form-wrapper {
+    margin: 20px auto;
+    width: 500px;
+    padding: 50px;
+    background-color: mediumaquamarine;
+    border-radius: 5px;
+}
+
+.form-wrapper h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.label1 {
+
+}
+
+.form-wrapper form input {
+    margin-bottom: 20px;
+    width: 325px;
+    height: 40px;
+    border-radius: 8px;
+    border-color: white;
+    outline: none;
+}
+
+.form-wrapper form label {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.form-wrapper form textarea {
+    outline: none;
+}
+
+.form-wrapper form button {
+    padding: 5px 20px;
+    border: none;
+    border-radius: 8%;
+    background-color: gray;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 230px;
+}
+.form-wrapper form button:hover{
+    background-color: black;
+    color: white;
+    transition: all ease-in-out .7s;
+}

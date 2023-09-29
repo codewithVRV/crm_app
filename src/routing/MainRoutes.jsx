@@ -2,6 +2,7 @@ import { Route,Routes } from "react-router-dom";
 
 import Login from "../pages/auth/Login";
 import SignUp from "../pages/auth/SignUp";
+import CreateTicket from "../pages/CreateTicket/CreateTicket";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Home from "../pages/Home/Home";
 import ListAllUsers from "../pages/users/ListAllUsers";
@@ -14,6 +15,7 @@ function MainRoutes () {
             <Route path="/" element={ <Home />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/signup" element={<SignUp />}/>
+            <Route path="/ticket/create" element={<CreateTicket />}/>
             <Route  element={<AuthRoutes allowListedRoles={["admin", ]}/>}>  
                 <Route path='/users' element={<ListAllUsers />}/>
             </Route>
